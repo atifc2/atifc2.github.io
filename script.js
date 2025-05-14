@@ -534,3 +534,18 @@ const educationObserver = new IntersectionObserver((entries) => {
 if (educationSection) {
     educationObserver.observe(educationSection);
 } 
+
+/*Fix*/
+// Fix viewport scaling on mobile
+function setViewportScale() {
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (window.innerWidth <= 768) {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    } else {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', setViewportScale);
+window.addEventListener('resize', setViewportScale);
