@@ -1,5 +1,5 @@
 // Typing animation
-const words = ["Data Scientist", "Analytics Professional", "Machine Learning Engineer"];
+const words = ["Data Scientist", "Analytics Professional", "ML Engineer", "AI Consultant"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -12,16 +12,16 @@ function type() {
     if (isDeleting) {
         dynamicText.textContent = currentWord.substring(0, charIndex - 1);
         charIndex--;
-        typingDelay = 50;
+        typingDelay = 30; // Faster deletion
     } else {
         dynamicText.textContent = currentWord.substring(0, charIndex + 1);
         charIndex++;
-        typingDelay = 100;
+        typingDelay = 100; // Consistent typing speed
     }
 
     if (!isDeleting && charIndex === currentWord.length) {
         isDeleting = true;
-        typingDelay = 2000;
+        typingDelay = 2000; // Pause at end of word
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
@@ -350,7 +350,41 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Smooth scrolling for navigation links
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navLinksList = document.querySelectorAll('.nav-link');
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+
+        // Close menu when clicking on a nav link
+        navLinksList.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+});
+
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
