@@ -1895,6 +1895,50 @@ a, button, .job, .project {
     padding: 2rem;
 }
 
+.education-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.gpa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: flex-start;
+}
+
+.gpa-label, .gpa-value {
+    white-space: nowrap;
+}
+
+.specialization {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.specialization-label, .specialization-value {
+    display: block;
+    white-space: nowrap;
+}
+
+/* Keep Major and Year on same line */
+.specialization {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.specialization-label, .specialization-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .contact-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
