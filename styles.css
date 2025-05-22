@@ -464,18 +464,25 @@ a, button, .job, .project {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 1200px;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
     color: var(--maroon);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    padding: 3rem;
-    border-radius: 20px;
+    padding: 2rem;
+    border-radius: 15px;
     border: 1px solid rgba(128, 0, 32, 0.1);
-    box-shadow: 0 10px 30px rgba(128, 0, 32, 0.1);
+    box-shadow: 0 8px 25px rgba(128, 0, 32, 0.1);
+}
+
+@media (min-width: 992px) {
+    .hero-content {
+        padding: 2rem 10%;
+    }
 }
 
 .hero-text {
@@ -551,12 +558,25 @@ a, button, .job, .project {
 }
 
 .description {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    animation: fadeInUp 1s ease-out 0.6s backwards;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--text-color);
+    margin: 0.5rem 0;
+    max-width: 700px;
+    letter-spacing: 0.01em;
+}
+
+.description:last-of-type {
+    color: var(--maroon);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 1s ease-out 0.8s backwards;
+    margin-top: 2.5rem;
 }
 
 .hero-buttons {
@@ -606,7 +626,7 @@ a, button, .job, .project {
 
 .stat-item {
     text-align: center;
-    padding: 1.5rem;
+    padding: 1rem;
     background: white;
     border-radius: 15px;
     transition: all 0.3s ease;
