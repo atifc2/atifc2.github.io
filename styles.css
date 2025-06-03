@@ -1112,23 +1112,29 @@ a, button, .job, .project {
     position: relative;
 }
 
-#projects h2 {
-    text-align: left !important;
+#projects .section-inner > h2 {
+    text-align: center !important;
     color: var(--maroon) !important;
-    margin: 0 0 2.5rem 0 !important;
-    font-size: 2.25rem !important;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.75rem !important;
+    margin: 0 auto 2.5rem !important;
+    font-size: 2.5rem !important;
+    position: relative !important;
+    padding-bottom: 1rem !important;
     font-weight: 700 !important;
-    width: auto !important;
+    width: 100% !important;
+    max-width: 800px !important;
+    display: block !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
 }
 
 #projects h2::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
     transform: scaleX(0);
     width: 60px;
     height: 3px;
@@ -3176,13 +3182,18 @@ html {
         gap: 1rem;
     }
     
-    /* Fix project section */
-    #projects h2 {
-        font-size: 2rem;
-        white-space: nowrap;
-        padding: 0 1rem;
-        width: 100%;
-        text-align: center;
+    /* Projects section mobile */
+    #projects .section-inner > h2 {
+        font-size: 2rem !important;
+        padding: 0 1rem 1rem !important;
+        margin: 0 auto 2rem !important;
+        text-align: center !important;
+        white-space: normal !important;
+        display: block !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        float: none !important;
     }
     
     .projects-grid {
@@ -3247,6 +3258,27 @@ html {
     /* General fixes */
     section {
         padding: 4rem 0;
+    }
+    
+    /* What I Do section specific spacing */
+    #about {
+        padding: 5rem 0 4rem;
+    }
+    
+    #about .section-inner {
+        padding-top: 1.5rem;
+    }
+    
+    .services-grid {
+        margin-top: 1.5rem;
+        gap: 2rem;
+    }
+    
+    .service-card {
+        margin-bottom: 2.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
     }
     
     section h2 {
