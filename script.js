@@ -31,9 +31,24 @@ function type() {
     setTimeout(type, typingDelay);
 }
 
-// Start typing animation when page loads
+// Track 'Download Resume' button click
 document.addEventListener('DOMContentLoaded', () => {
+    // Start typing animation
     type();
+    
+    // Track resume downloads
+    const downloadResumeBtn = document.querySelector('a[href*="Resume_ATIFAC2.pdf"]');
+    if (downloadResumeBtn) {
+        downloadResumeBtn.addEventListener('click', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'download_resume', {
+                    'event_category': 'engagement',
+                    'event_label': 'Resume_Download',
+                    'value': 1
+                });
+            }
+        });
+    }
     
     // Initialize intersection observer for section animations
     const sections = document.querySelectorAll('.section');
