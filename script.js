@@ -5,27 +5,51 @@ let charIndex = 0;
 let isDeleting = false;
 let typingDelay = 100;
 
+// Function to get the correct article for a word
+function getArticle(word) {
+    // Words that start with a vowel sound use 'an'
+    const firstLetter = word.charAt(0).toLowerCase();
+    return (['a', 'e', 'i', 'o', 'u'].includes(firstLetter)) ? 'an ' : 'a ';
+}
+
+// Update the static text with the correct article
+function updateStaticText(article) {
+    const staticText = document.querySelector('.static-text');
+    staticText.textContent = `I'm ${article}`;
+}
+
 function type() {
     const currentWord = words[wordIndex];
+    const article = getArticle(currentWord);
     const dynamicText = document.querySelector('.dynamic-text');
     
+    // Update the static text with the current article
+    updateStaticText(article);
+    
     if (isDeleting) {
+        // Delete the word
         dynamicText.textContent = currentWord.substring(0, charIndex - 1);
         charIndex--;
         typingDelay = 30; // Faster deletion
     } else {
+        // Type the word
         dynamicText.textContent = currentWord.substring(0, charIndex + 1);
         charIndex++;
         typingDelay = 100; // Consistent typing speed
     }
-
+    
+    // Check if we've finished typing or deleting
     if (!isDeleting && charIndex === currentWord.length) {
+        // Pause at the end of the word
+        typingDelay = 2000; // 2 second pause
         isDeleting = true;
-        typingDelay = 2000; // Pause at end of word
     } else if (isDeleting && charIndex === 0) {
+        // Move to next word
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
-        typingDelay = 500;
+        // Update the article for the next word immediately
+        updateStaticText(getArticle(words[wordIndex]));
+        typingDelay = 500; // Pause before typing next word
     }
 
     setTimeout(type, typingDelay);
